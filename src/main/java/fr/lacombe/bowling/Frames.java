@@ -3,18 +3,29 @@ package fr.lacombe.bowling;
 import java.util.ArrayList;
 
 public class Frames {
-    private final ArrayList<Frame> frames;
+    private final ArrayList<Frame> items;
+    private Frame currentFrame;
 
-    public Frames(ArrayList<Frame> frames) {
+    public Frames(ArrayList<Frame> items) {
 
-        this.frames = frames;
+        this.items = items;
     }
 
     public Frame last() {
-        return frames.size() != 0 ? frames.get(frames.size() - 1) : new Frame();
+        return items.size() != 0 ? items.get(items.size() - 1) : new Frame();
     }
 
     public void add(Frame frame) {
-        frames.add(frame);
+        items.add(frame);
+    }
+
+    public void firstRolls(int pinsKnockedOnRoll) {
+        currentFrame = new Frame();
+        currentFrame.firstRolls(pinsKnockedOnRoll);
+    }
+
+    public void secondRolls(int pinsKnockedOnRoll) {
+        currentFrame.secondRolls(pinsKnockedOnRoll);
+        items.add(currentFrame);
     }
 }
