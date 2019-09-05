@@ -1,5 +1,6 @@
 package fr.lacombe.bowling;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,6 +23,16 @@ public class FrameTest {
 
         assertThat(score).isEqualTo(sumOfKnockedDownPins);
     }
+
+    @Test
+    void frame_is_spare_when_the_sum_of_rolls_is_equal_10() {
+        Frame frame = Frame.of(7,3);
+
+        boolean isSpare = frame.isSpare();
+
+        assertThat(isSpare).isEqualTo(true);
+    }
+
 
     private static Stream<Arguments> twoRollsAndTheResultingScore() {
         return Stream.of(

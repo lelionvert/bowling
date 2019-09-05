@@ -1,6 +1,6 @@
 package fr.lacombe.bowling;
 
-public final class Frame {
+public class Frame {
     private final int firstRollKnockedDownPins;
     private final int secondRollKnockedDownPins;
 
@@ -15,5 +15,13 @@ public final class Frame {
 
     public int getScore() {
         return firstRollKnockedDownPins + secondRollKnockedDownPins;
+    }
+
+    public boolean isSpare() {
+        return true;
+    }
+
+    public int spareValue() {
+        return 0;
     }
 }
