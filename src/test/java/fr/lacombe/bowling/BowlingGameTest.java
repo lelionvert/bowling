@@ -18,7 +18,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void renameMe() {
+    void entire_bowling_game_of_gutter_rolls() {
         BowlingGame bowlingGame = new BowlingGame();
         for (int i = 0; i < 20; i++) {
             bowlingGame.roll(0);
@@ -27,4 +27,6 @@ public class BowlingGameTest {
 
         assertThat(finalScore).isEqualTo(0);
     }
+
+
 }
