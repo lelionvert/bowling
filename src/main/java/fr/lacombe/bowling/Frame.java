@@ -1,8 +1,12 @@
 package fr.lacombe.bowling;
 
 public class Frame {
-    private Frame(int firstTryDownPins, int secondTryDownPins) {
+    private final int firstTryDownPins;
+    private final int secondTryDownPins;
 
+    private Frame(int firstTryDownPins, int secondTryDownPins) {
+        this.firstTryDownPins = firstTryDownPins;
+        this.secondTryDownPins = secondTryDownPins;
     }
 
     public static Frame of(int firstTryDownPins, int secondTryDownPins) {
@@ -10,6 +14,6 @@ public class Frame {
     }
 
     public int getScore() {
-        return 8;
+        return firstTryDownPins + secondTryDownPins;
     }
 }
