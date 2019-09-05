@@ -1,8 +1,8 @@
 package fr.lacombe.bowling;
 
 public class Frame {
-    private int firstRollKnockedDownPins;
-    private int secondRollKnockedDownPins;
+    private int firstRollKnockedDownPins = 0;
+    private int secondRollKnockedDownPins = 0;
 
     public Frame(int firstRollKnockedDownPins, int secondRollKnockedDownPins) {
         this.firstRollKnockedDownPins = firstRollKnockedDownPins;
@@ -23,10 +23,6 @@ public class Frame {
 
     public boolean isSpare() {
         return score() == 10;
-    }
-
-    public int spareValue(int pinsKnockedOnRoll) {
-        return score() + pinsKnockedOnRoll;
     }
 
     public void firstRolls(int pinsKnockedOnRoll) {

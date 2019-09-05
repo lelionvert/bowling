@@ -1,12 +1,15 @@
 package fr.lacombe.bowling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BowlingGame {
     private int score = 0;
-    private Frame frame;
+    private Frame frame = new Frame();
     private int countRolls = 0;
+    private final Frames frames = new Frames(new ArrayList<Frame>());
 
-    public BowlingGame(Frame frame) {
-        this.frame = frame;
+    public BowlingGame() {
     }
 
     public int getIntermediateScore() {
@@ -14,15 +17,18 @@ public class BowlingGame {
     }
 
     public void roll(int pinsKnockedOnRoll) {
-        if (countRolls == 0 || countRolls == 8) {
-            frame.firstRolls(pinsKnockedOnRoll);
-        }
-        if(countRolls == 1 || countRolls == 9) {
-            frame.secondRolls(pinsKnockedOnRoll);
-        }
-        if((countRolls == 2 || countRolls == 10) && frame.isSpare()) {
-            score += pinsKnockedOnRoll;
+        boolean startFrame = countRolls % 2 == 0;
+        if (startFrame) {
             frame = new Frame();
+            frame.firstRolls(pinsKnockedOnRoll);
+            if (frames.last().isSpare()) {
+                score += pinsKnockedOnRoll;
+            }
+        }
+        boolean endOfFrame = countRolls % 2 == 1;
+        if (endOfFrame) {
+            frame.secondRolls(pinsKnockedOnRoll);
+            frames.add(frame);
         }
         countRolls++;
         score += pinsKnockedOnRoll;
@@ -30,9 +36,5 @@ public class BowlingGame {
 
     public int Score() {
         return score;
-    }
-
-    public boolean containSpare() {
-        return false;
     }
 }

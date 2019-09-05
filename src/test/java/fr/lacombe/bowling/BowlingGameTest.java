@@ -12,8 +12,7 @@ public class BowlingGameTest {
 
     @BeforeEach
     void setUp() {
-        Frame frame = new Frame();
-        bowlingGame = new BowlingGame(frame);
+        bowlingGame = new BowlingGame();
     }
 
     @Test
