@@ -12,7 +12,7 @@ public class BowlingGameTest {
 
     @BeforeEach
     void setUp() {
-        Frame frame = mock(Frame.class);
+        Frame frame = new Frame();
         bowlingGame = new BowlingGame(frame);
     }
 
@@ -46,17 +46,24 @@ public class BowlingGameTest {
     }
 
     @Test
-    void there_is_spare_in_game_when_a_pair_of_rolls_equal_10() {
-        bowlingGame.roll(7);
-        bowlingGame.roll(3);
+    void add_third_roll_score_to_first_spare_frame_in_entire_game_score() {
+        int firstRoll = 7;
+        int secondRoll = 3;
+        bowlingGame.roll(firstRoll);
+        bowlingGame.roll(secondRoll);
 
-        for (int i = 0; i < 18; i++) {
-            bowlingGame.roll(1);
+        int numberOfRolls = 18;
+        int pinsKnockedOnRoll = 2;
+        for (int i = 0; i < numberOfRolls; i++) {
+            bowlingGame.roll(pinsKnockedOnRoll);
         }
 
         int containSpare = bowlingGame.Score();
 
-        assertThat(containSpare).isEqualTo(11 + 18);
+        int spareValue = firstRoll + secondRoll + pinsKnockedOnRoll;
+        int scoreOthersFrame = numberOfRolls * pinsKnockedOnRoll;
+
+        assertThat(containSpare).isEqualTo(spareValue + scoreOthersFrame);
     }
 
     private void playEntireGame(int pinKnockedForEachRoll) {

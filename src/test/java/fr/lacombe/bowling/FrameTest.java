@@ -19,7 +19,7 @@ public class FrameTest {
         int score = Frame.of(
                 pinsKnockedDownOnFirstTry,
                 pinsKnockedDownOnSecondTry)
-                .getScore();
+                .score();
 
         assertThat(score).isEqualTo(sumOfKnockedDownPins);
     }
@@ -31,6 +31,16 @@ public class FrameTest {
         boolean isSpare = frame.isSpare();
 
         assertThat(isSpare).isEqualTo(true);
+    }
+
+
+    @Test
+    void frame_is_not_spare_when_the_sum_of_rolls_is_not_10() {
+        Frame frame = Frame.of(3, 4);
+
+        boolean isNotSpare = frame.isSpare();
+
+        assertThat(isNotSpare).isEqualTo(false);
     }
 
 

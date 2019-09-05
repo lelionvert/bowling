@@ -3,6 +3,7 @@ package fr.lacombe.bowling;
 public class BowlingGame {
     private int score = 0;
     private Frame frame;
+    private int countRolls = 0;
 
     public BowlingGame(Frame frame) {
         this.frame = frame;
@@ -13,11 +14,18 @@ public class BowlingGame {
     }
 
     public void roll(int pinsKnockedOnRoll) {
-        if (frame.isSpare())
-            score += frame.spareValue();
-        else {
+        if(countRolls == 2 && frame.isSpare()) {
             score += pinsKnockedOnRoll;
+            frame = new Frame();
         }
+        if (countRolls == 0) {
+            frame.firstRolls(pinsKnockedOnRoll);
+        }
+        if(countRolls == 1) {
+            frame.secondRolls(pinsKnockedOnRoll);
+        }
+        countRolls++;
+        score += pinsKnockedOnRoll;
     }
 
     public int Score() {
