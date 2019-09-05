@@ -29,7 +29,7 @@ public class BowlingGameTest {
 
     @Test
     void entire_bowling_game_of_gutter_rolls() {
-        playEntireGame(0);
+        playGame(0, 20);
 
         int finalScore = bowlingGame.Score();
 
@@ -38,7 +38,7 @@ public class BowlingGameTest {
 
     @Test
     void entire_game_of_normal_score() {
-        playEntireGame(1);
+        playGame(1, 20);
 
         int finalScore = bowlingGame.Score();
 
@@ -54,9 +54,7 @@ public class BowlingGameTest {
 
         int numberOfRolls = 18;
         int pinsKnockedOnRoll = 2;
-        for (int i = 0; i < numberOfRolls; i++) {
-            bowlingGame.roll(pinsKnockedOnRoll);
-        }
+        playGame(pinsKnockedOnRoll, numberOfRolls);
 
         int containSpare = bowlingGame.Score();
 
@@ -66,8 +64,27 @@ public class BowlingGameTest {
         assertThat(containSpare).isEqualTo(spareValue + scoreOthersFrame);
     }
 
-    private void playEntireGame(int pinKnockedForEachRoll) {
-        for (int i = 0; i < 20; i++) {
+    @Test
+    void Rename_me() {
+        int firstRoll = 7;
+        int secondRoll = 3;
+        int numberOfRolls = 8;
+        int pinsKnockedOnRoll = 1;
+        playGame(pinsKnockedOnRoll, numberOfRolls);
+        bowlingGame.roll(firstRoll);
+        bowlingGame.roll(secondRoll);
+        playGame(pinsKnockedOnRoll, 10);
+
+        int containSpare = bowlingGame.Score();
+
+        int spareValue = firstRoll + secondRoll + pinsKnockedOnRoll;
+        int scoreOthersFrame = (numberOfRolls + 10) * pinsKnockedOnRoll;
+
+        assertThat(containSpare).isEqualTo(spareValue + scoreOthersFrame);
+    }
+
+    private void playGame(int pinKnockedForEachRoll, int numberOfRolls) {
+        for (int i = 0; i < numberOfRolls; i++) {
             bowlingGame.roll(pinKnockedForEachRoll);
         }
     }

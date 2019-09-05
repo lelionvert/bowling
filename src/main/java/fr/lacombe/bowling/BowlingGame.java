@@ -14,15 +14,15 @@ public class BowlingGame {
     }
 
     public void roll(int pinsKnockedOnRoll) {
-        if(countRolls == 2 && frame.isSpare()) {
-            score += pinsKnockedOnRoll;
-            frame = new Frame();
-        }
-        if (countRolls == 0) {
+        if (countRolls == 0 || countRolls == 8) {
             frame.firstRolls(pinsKnockedOnRoll);
         }
-        if(countRolls == 1) {
+        if(countRolls == 1 || countRolls == 9) {
             frame.secondRolls(pinsKnockedOnRoll);
+        }
+        if((countRolls == 2 || countRolls == 10) && frame.isSpare()) {
+            score += pinsKnockedOnRoll;
+            frame = new Frame();
         }
         countRolls++;
         score += pinsKnockedOnRoll;
