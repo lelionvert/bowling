@@ -22,10 +22,18 @@ public class Frames {
     public void firstRolls(int pinsKnockedOnRoll) {
         currentFrame = new Frame();
         currentFrame.firstRolls(pinsKnockedOnRoll);
+
     }
 
     public void secondRolls(int pinsKnockedOnRoll) {
         currentFrame.secondRolls(pinsKnockedOnRoll);
         items.add(currentFrame);
+    }
+
+    int addSpareBonus(int pinsKnockedOnRoll) {
+        if (last().isSpare()) {
+            return pinsKnockedOnRoll;
+        }
+        return 0;
     }
 }
